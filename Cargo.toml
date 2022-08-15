@@ -14,5 +14,5 @@ lib = { path = "./lib" }
 nannou = { package = "nannou_dynamic", path = "./nannou_dynamic" }
 
 [features]
-default = []
+default = ["reload"]
 reload = ["dep:hot-lib-reloader"]
