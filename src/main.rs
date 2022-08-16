@@ -12,7 +12,7 @@ mod hot_lib {
 }
 
 fn model(app: &nannou::App) -> Model {
-    Model::new(app.new_window().view(view).event(event).build().unwrap())
+    Model::for_window(app.new_window().view(view).event(event).build().unwrap())
 }
 
 pub fn update(app: &App, model: &mut Model, update: Update) {

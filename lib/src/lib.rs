@@ -18,7 +18,7 @@ impl Model {
     }
 }
 
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Default, Debug)]
 pub struct State {}
 
 #[no_mangle]
