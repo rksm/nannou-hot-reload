@@ -4,39 +4,28 @@ use nannou::prelude::*;
 
 pub struct Model {
     window: window::Id,
-    pub version: usize,
-    // Box state so we can migrate / recreate it
-    state: Box<State>,
+    pub was_updated: bool,
+    state: State,
 }
 
 impl Model {
-    pub fn new(window: WindowId) -> Self {
+    pub fn for_window(window: window::Id) -> Self {
         Self {
             window,
-            version: 0,
-            state: Box::new(State::default()),
+            state: State::default(),
+            was_updated: false,
         }
     }
 }
 
-#[derive(Default, Debug)]
-pub struct State {
-    version: usize,
-}
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct State {}
 
 #[no_mangle]
 pub fn event(app: &App, model: &mut Model, event: WindowEvent) {}
 
 #[no_mangle]
-pub fn update(app: &App, model: &mut Model, update: Update) {
-    if model.state.version < model.version {
-        println!("new version {}", model.version);
-        model.state = Box::new(State {
-            version: model.version,
-            ..Default::default()
-        });
-    }
-}
+pub fn update(app: &App, model: &mut Model, update: Update) {}
 
 #[no_mangle]
 pub fn view(app: &App, model: &Model, frame: Frame) {

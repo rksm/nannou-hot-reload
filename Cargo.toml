@@ -2,17 +2,24 @@
 resolver = "2"
 members = ["lib", "nannou_dynamic"]
 
+
 [package]
 name = "{{project-name}}"
-authors = ["{{authors}}"]
 version = "0.1.0"
+authors = ["{{authors}}"]
 edition = "2021"
 
 [dependencies]
-hot-lib-reloader = { version = "^0.6", optional = true }
+hot-lib-reloader = "^0.6.1"
 lib = { path = "./lib" }
 nannou = { package = "nannou_dynamic", path = "./nannou_dynamic" }
 
-[features]
-default = ["reload"]
-reload = ["dep:hot-lib-reloader"]
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package.nannou]
+opt-level = 3
+
+[profile.dev.package.nannou_dynamic]
+opt-level = 3
